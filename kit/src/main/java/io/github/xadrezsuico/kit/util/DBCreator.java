@@ -107,5 +107,5 @@ public class DBCreator {
 			return true;
 		}
 		throw new RuntimeException("Não foi possível restaurar as tabelas.");
-}
+	}
 }

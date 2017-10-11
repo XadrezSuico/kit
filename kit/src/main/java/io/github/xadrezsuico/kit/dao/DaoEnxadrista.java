@@ -9,7 +9,7 @@ public class DaoEnxadrista implements Dao<Enxadrista, Integer> {
 
 	@Override
 	public void insert(Enxadrista t) {
-		// TODO Auto-generated method stub
+		t.camposOk();
 		
 	}
 
