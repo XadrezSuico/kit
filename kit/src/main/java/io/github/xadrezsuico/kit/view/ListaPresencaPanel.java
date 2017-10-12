@@ -9,15 +9,29 @@ import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
 import io.github.xadrezsuico.kit.enums.TipoLista;
+import net.sf.jasperreports.engine.JREmptyDataSource;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.view.JasperViewer;
+
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
+import java.awt.event.ActionEvent;
 
 public class ListaPresencaPanel extends JPanel {
 	private JTextField tf_linhas;
+	private JComboBox cb_tipo;
+	private DefaultView defaultView;
 
 	/**
 	 * Create the panel.
 	 */
-	public ListaPresencaPanel() {
+	public ListaPresencaPanel(DefaultView defaultView) {
+		this.defaultView = defaultView;
 		GridBagLayout gridBagLayout = new GridBagLayout();
 		gridBagLayout.columnWidths = new int[]{0, 0};
 		gridBagLayout.rowHeights = new int[]{0, 0, 0};
@@ -53,7 +67,7 @@ public class ListaPresencaPanel extends JPanel {
 		gbc_lblTipoDeLista.gridy = 0;
 		panel.add(lblTipoDeLista, gbc_lblTipoDeLista);
 		
-		JComboBox cb_tipo = new JComboBox(TipoLista.values());
+		cb_tipo = new JComboBox(TipoLista.values());
 		GridBagConstraints gbc_cb_tipo = new GridBagConstraints();
 		gbc_cb_tipo.gridwidth = 5;
 		gbc_cb_tipo.insets = new Insets(0, 0, 5, 5);
@@ -90,11 +104,52 @@ public class ListaPresencaPanel extends JPanel {
 		panel.add(lblLinhas, gbc_lblLinhas);
 		
 		JButton btnGerar = new JButton("Gerar P\u00E1gina para Impress\u00E3o");
+		btnGerar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				gerarRelatorio();
+			}
+		});
 		GridBagConstraints gbc_btnGerar = new GridBagConstraints();
 		gbc_btnGerar.gridx = 5;
 		gbc_btnGerar.gridy = 3;
 		panel.add(btnGerar, gbc_btnGerar);
 
 	}
+
+	protected void gerarRelatorio() {
+        JasperPrint print = null;
+        InputStream arquivo = null;
+		Map<String, Object> chaves = new HashMap<String, Object>();
+
+		chaves.put("nome", defaultView.getMain().getSoftwareProperties().getProperty("nome"));
+		
+		try {
+			switch(((TipoLista) cb_tipo.getSelectedItem()).getId()){
+				case 1:
+					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_individual_nao.jasper");
+					print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
+					break;
+				case 2:
+					
+					break;
+				case 3:
+					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_equipe_nao.jasper");
+					print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
+					break;
+				case 4:
+					
+					break;
+			}
+	        JasperViewer viewer = new JasperViewer(print, false);
+	        viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+	        viewer.setTitle("LISTA DE PRESENÇA");
+	        viewer.setVisible(true);
+		} catch (JRException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
 
 }

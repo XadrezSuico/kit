@@ -41,7 +41,7 @@ public class DefaultView extends JFrame {
 		tabbedPane.add("HOME", homePanel);
 		tabbedPane.setSelectedComponent(homePanel);
 
-		listaPresencaPanel = new ListaPresencaPanel();
+		listaPresencaPanel = new ListaPresencaPanel(this);
 		tabbedPane.add("LISTA DE PRESENÇA", listaPresencaPanel);
 		
 		configuracaoPanel = new ConfiguracaoPanel(this);

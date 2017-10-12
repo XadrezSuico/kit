@@ -41,7 +41,7 @@ public class Enxadrista {
 		this.isNew = isNew;
 	}
 	
-	public boolean camposOk(){
+	public boolean camposOk() throws EnxadristaException{
 		if((nome != null || nome != "") && (sobrenome != null || sobrenome != "") && (id != 0 || isNew)){
 			return true;
 		}
