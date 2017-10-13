@@ -1,22 +1,22 @@
 package io.github.xadrezsuico.kit.dao;
 
-import java.util.Map;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import io.github.xadrezsuico.kit.interfaces.Dao;
-import io.github.xadrezsuico.kit.model.Enxadrista;
+import io.github.xadrezsuico.kit.model.Equipe;
 
-public class DaoEnxadrista implements Dao<Enxadrista, Integer> {
+public class DaoEquipe implements Dao<Equipe, Integer> {
 
 	@Override
-	public void insert(Enxadrista t) {
-		t.camposOk();
+	public void insert(Equipe t) {
+		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(Enxadrista t, Integer k) {
+	public void update(Equipe t, Integer k) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -28,27 +28,26 @@ public class DaoEnxadrista implements Dao<Enxadrista, Integer> {
 	}
 
 	@Override
-	public Enxadrista search(Integer k) {
+	public Equipe search(Integer k) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Map<Integer, Enxadrista> search(String field, String text) {
+	public Map<Integer, Equipe> search(String field, String text) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Map<Integer, Enxadrista> mapAll() {
+	public Map<Integer, Equipe> mapAll() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Enxadrista> listAll() {
-		// TODO Auto-generated method stub
-		List<Enxadrista> lista = new ArrayList<Enxadrista>();
+	public List<Equipe> listAll() {
+		List<Equipe> lista = new ArrayList<Equipe>();
 		return lista;
 	}
 

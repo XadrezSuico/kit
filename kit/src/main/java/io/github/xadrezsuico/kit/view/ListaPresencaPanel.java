@@ -8,6 +8,10 @@ import java.awt.Insets;
 import javax.swing.JComboBox;
 import javax.swing.JTextField;
 
+import io.github.xadrezsuico.kit.dao.DaoEnxadrista;
+import io.github.xadrezsuico.kit.dao.DaoEquipe;
+import io.github.xadrezsuico.kit.data.EnxadristaDataSource;
+import io.github.xadrezsuico.kit.data.EquipeDataSource;
 import io.github.xadrezsuico.kit.enums.TipoLista;
 import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
@@ -130,14 +134,18 @@ public class ListaPresencaPanel extends JPanel {
 					print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
 					break;
 				case 2:
-					
+					DaoEnxadrista daoEnxadrista = new DaoEnxadrista();
+					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_individual_nao.jasper");
+					print = JasperFillManager.fillReport(arquivo, chaves, new EnxadristaDataSource(daoEnxadrista.listAll()));
 					break;
 				case 3:
 					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_equipe_nao.jasper");
 					print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
 					break;
 				case 4:
-					
+					DaoEquipe daoEquipe = new DaoEquipe();
+					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_equipe_sim.jasper");
+					print = JasperFillManager.fillReport(arquivo, chaves, new EquipeDataSource(daoEquipe.listAll()));
 					break;
 			}
 	        JasperViewer viewer = new JasperViewer(print, false);

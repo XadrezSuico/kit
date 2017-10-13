@@ -24,7 +24,7 @@ public class SoftwareProperties {
 		p.setProperty("DBname", "kitArbitragem");
 		p.setProperty("DBusername", "sa");
 		p.setProperty("DBpassword", "sa");
-		p.setProperty("DBIP", "./");
+		p.setProperty("DBIP", ".");
 		p.setProperty("nome", "Torneio Exemplo");
 		p.setProperty("tipo", "1");
 		recordInFile();

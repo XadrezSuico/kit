@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="lista_presenca_equipe_nao" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="1c5aecc5-c157-4c05-85ca-83f9d023e0fa">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="src\main\java\io\github\xadrezsuico\kit\beans\DA_blank_list_70.xml"/>
+	<parameter name="nome" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="nome" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="90" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="60" width="800" height="30" uuid="70ded0f4-f003-4a69-ae07-34f2321b12fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="18"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nome}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="80" y="0" width="640" height="30" uuid="d1cec750-f096-4acf-be2c-5fb6d8cf8c3a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LISTA DE PRESENÇA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="80" y="30" width="640" height="30" uuid="27539b84-d72b-4041-be16-68b2b6abd2e9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="22" isBold="true"/>
+				</textElement>
+				<text><![CDATA[REUNIÃO TÉCNICA - XADREZ]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="40" height="20" uuid="664c1924-2562-407e-8e44-e1c905baf808"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[Nº]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="0" width="110" height="20" uuid="be7fd327-3a81-46d4-a06e-e6253fc4e4c5"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[EQUIPE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="150" y="0" width="160" height="20" uuid="3cb044dd-2960-4797-b302-08a58a7e86a8"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[NOME]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="0" width="120" height="20" uuid="6bb87fb0-1bed-440b-8852-7837e55476a2"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CIDADE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="430" y="0" width="114" height="20" uuid="77cfbc59-bde6-43d2-a0d3-8079cae9a52f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[CELULAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="544" y="0" width="176" height="20" uuid="b30f6ebf-d7ab-4afc-845d-1c128b8ef38b"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[E-MAIL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="720" y="0" width="80" height="20" uuid="8c39989f-f87e-42ce-b68e-07680e81427e"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[ASSINATURA]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="40" height="30" uuid="a61b94e0-c090-4f8b-8f30-ce27b637fef2"/>
+				<box>
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="150" y="0" width="160" height="30" uuid="599f1572-f485-48ca-a910-3d8d8aab9225"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="310" y="0" width="120" height="30" uuid="095120ed-741f-4794-ab31-d95e560d3171"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="430" y="0" width="114" height="30" uuid="1770334f-c326-495b-9d94-b45ffd9970c1"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="544" y="0" width="176" height="30" uuid="be4e3159-f8e7-4cde-aedb-05f656e6a0d7"/>
+			</rectangle>
+			<rectangle>
+				<reportElement x="720" y="0" width="80" height="30" uuid="69e248d4-e729-4806-a012-5bf3544f6b71"/>
+			</rectangle>
+			<textField>
+				<reportElement x="40" y="0" width="110" height="30" uuid="25ee2d11-9e1c-40bb-be47-505d3114f01c"/>
+				<box rightPadding="0">
+					<pen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement x="480" y="2" width="160" height="18" uuid="61540617-e8da-46d1-a0ba-8b807e83b07a"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="640" y="2" width="160" height="18" uuid="e658f9af-0786-4296-8ec7-a33533d16720"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" de " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
