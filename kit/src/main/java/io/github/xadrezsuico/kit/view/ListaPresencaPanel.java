@@ -3,6 +3,8 @@ package io.github.xadrezsuico.kit.view;
 import javax.swing.JPanel;
 import java.awt.GridBagLayout;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import javax.swing.JComboBox;
@@ -121,41 +123,63 @@ public class ListaPresencaPanel extends JPanel {
 	}
 
 	protected void gerarRelatorio() {
-        JasperPrint print = null;
-        InputStream arquivo = null;
-		Map<String, Object> chaves = new HashMap<String, Object>();
+		final ListaPresencaPanel listaPresencaPanel = ListaPresencaPanel.this;
+		final LoadingView loadingView = new LoadingView();
+		loadingView.setVisible(true);
+		Thread threadPagina = new Thread(new Runnable(){
+	        JasperPrint print = null;
+	        InputStream arquivo = null;
+			Map<String, Object> chaves = new HashMap<String, Object>();
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
 
-		chaves.put("nome", defaultView.getMain().getSoftwareProperties().getProperty("nome"));
-		
-		try {
-			switch(((TipoLista) cb_tipo.getSelectedItem()).getId()){
-				case 1:
-					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_individual_nao.jasper");
-					print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
-					break;
-				case 2:
-					DaoEnxadrista daoEnxadrista = new DaoEnxadrista();
-					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_individual_nao.jasper");
-					print = JasperFillManager.fillReport(arquivo, chaves, new EnxadristaDataSource(daoEnxadrista.listAll()));
-					break;
-				case 3:
-					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_equipe_nao.jasper");
-					print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
-					break;
-				case 4:
-					DaoEquipe daoEquipe = new DaoEquipe();
-					arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_equipe_sim.jasper");
-					print = JasperFillManager.fillReport(arquivo, chaves, new EquipeDataSource(daoEquipe.listAll()));
-					break;
+				chaves.put("nome", defaultView.getMain().getSoftwareProperties().getProperty("nome"));
+				
+				try {
+					switch(((TipoLista) cb_tipo.getSelectedItem()).getId()){
+						case 1:
+							if(tf_linhas.getText() == null){
+								JOptionPane.showMessageDialog(listaPresencaPanel, "O número de linhas é necessário para essa lista.");
+							}
+							arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_individual_nao.jasper");
+							print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
+							break;
+						case 2:
+							DaoEnxadrista daoEnxadrista = new DaoEnxadrista();
+							arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_individual_sim.jasper");
+							print = JasperFillManager.fillReport(arquivo, chaves, new EnxadristaDataSource(daoEnxadrista.listAll()));
+							break;
+						case 3:
+							if(tf_linhas.getText() == null){
+								JOptionPane.showMessageDialog(listaPresencaPanel, "O número de linhas é necessário para essa lista.");
+							}
+							arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_equipe_nao.jasper");
+							print = JasperFillManager.fillReport(arquivo, chaves, new JREmptyDataSource(Integer.valueOf(tf_linhas.getText())));
+							break;
+						case 4:
+							DaoEquipe daoEquipe = new DaoEquipe();
+							arquivo = getClass().getResourceAsStream("/io/github/xadrezsuico/kit/report/lista_presenca_equipe_sim.jasper");
+							print = JasperFillManager.fillReport(arquivo, chaves, new EquipeDataSource(daoEquipe.listAll()));
+							break;
+					}
+			        JasperViewer viewer = new JasperViewer(print, false);
+			        viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
+			        viewer.setTitle("LISTA DE PRESENÇA");
+			        viewer.setVisible(true);
+			        loadingView.setVisible(false);
+				} catch (JRException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+			        loadingView.setVisible(false);
+				} catch (NumberFormatException e) {
+					JOptionPane.showMessageDialog(listaPresencaPanel, "O campo de QUANTIDADE DE LINHAS é obrigatório o preenchimento com um número.");
+			        loadingView.setVisible(false);
+				}
 			}
-	        JasperViewer viewer = new JasperViewer(print, false);
-	        viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH);
-	        viewer.setTitle("LISTA DE PRESENÇA");
-	        viewer.setVisible(true);
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+			
+		});
+		threadPagina.start();
 	}
 	
 	

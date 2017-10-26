@@ -17,7 +17,7 @@ public class EnxadristaDataSource implements JRRewindableDataSource {
 		this.index = 0;
 		this.lista = lista;
 	}
-	
+
 	@Override
 	public boolean next() throws JRException {
 		// TODO Auto-generated method stub
