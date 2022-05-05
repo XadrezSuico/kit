@@ -6,6 +6,7 @@ import javax.swing.JLabel;
 import java.awt.GridBagConstraints;
 import java.awt.Insets;
 import java.awt.Font;
+import javax.swing.SwingConstants;
 
 public class HomePanel extends JPanel {
 	
@@ -34,6 +35,7 @@ public class HomePanel extends JPanel {
 		
 		JLabel lblOPresenteKit = new JLabel("O presente kit faz parte do projeto \"XadrezSu\u00ED\u00E7o\", projeto para o desenvolvimento de sistema de gerenciamento de torneios de xadrez.");
 		GridBagConstraints gbc_lblOPresenteKit = new GridBagConstraints();
+		gbc_lblOPresenteKit.anchor = GridBagConstraints.NORTH;
 		gbc_lblOPresenteKit.gridwidth = 5;
 		gbc_lblOPresenteKit.insets = new Insets(0, 0, 0, 5);
 		gbc_lblOPresenteKit.gridx = 0;

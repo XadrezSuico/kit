@@ -20,6 +20,7 @@ public class DefaultView extends JFrame {
 	private HomePanel homePanel;
 	private ConfiguracaoPanel configuracaoPanel;
 	private ListaPresencaPanel listaPresencaPanel;
+	private FormEscalacao formEscalacao;
 
 	/**
 	 * Create the frame.
@@ -43,6 +44,9 @@ public class DefaultView extends JFrame {
 
 		listaPresencaPanel = new ListaPresencaPanel(this);
 		tabbedPane.add("LISTA DE PRESENÇA", listaPresencaPanel);
+
+		formEscalacao = new FormEscalacao(this);
+		tabbedPane.add("ESCALAÇÃO", formEscalacao);
 		
 		configuracaoPanel = new ConfiguracaoPanel(this);
 		tabbedPane.add("CONFIGURAÇÕES", configuracaoPanel);
